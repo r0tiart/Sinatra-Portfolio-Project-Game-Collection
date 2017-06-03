@@ -7,8 +7,14 @@ module Slugable
 
 	module InstanceMethods
 		def slug
-		self.username.downcase.gsub(" ", "-")
-	end
+			if !!self.respond_to?("username")
+				self.username.downcase.gsub(" ", "-")
+			elsif !!self.respond_to?("title")
+				self.title.downcase.gsub(" ", "-")
+			elsif !!self.respond_to?("name")
+				self.name.downcase.gsub(" ", "-")
+			end
+		end
 	end
 
 end

@@ -8,7 +8,7 @@
 		
 	<% @user.games.each do |game| %>
 
-	<li><b><%=game.title.capitalize%></b> published by: <%=game.publisher%> </li>
+	<li><b><a href="/games/<%=game.slug%>"><%=game.title.capitalize%></a></b> published by: <%=game.publisher%> </li>
 	
 	<%end%>
 

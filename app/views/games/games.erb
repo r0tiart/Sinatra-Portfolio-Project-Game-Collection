@@ -1,0 +1,31 @@
+<h2 class="text-center">Games being played:</h2>
+
+<br><br>
+
+<ol class="row">
+	
+	<% @games.each do |game| %>
+
+
+		<% if @logged_in %>	
+			<li>
+				<div class="col-md-4">Title: <a href="/games/<%=game.slug%>"><%=game.title.capitalize%></a></div>	
+				<div class="col-md-4">Publisher: <%=game.publisher.capitalize%> </div>
+				<div class="col-md-4">Number of Players: <%=game.users.all.count%></div>
+			</li>
+
+		<% else %>
+
+			<li>
+				<div class="col-md-4">Title: <%=game.title.capitalize%></div>	
+				<div class="col-md-4">Publisher: <%=game.publisher.capitalize%> </div>
+				<div class="col-md-4">Number of Players: <%=game.users.all.count%></div>
+			</li>
+
+		<%end%>
+
+
+	<%end%>	
+
+
+</ol>
