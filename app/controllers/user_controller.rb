@@ -1,8 +1,12 @@
 class UserController < ApplicationController
 
 	get '/users/new' do 
-
-		erb :'/users/create_user'
+		if logged_in?
+			user = current_user
+			redirect to "/users/#{user.slug}"
+		else	
+			erb :'/users/create_user'
+		end
 	end
 
 
@@ -16,10 +20,10 @@ class UserController < ApplicationController
 		end
 
 		session[:user_id] = user.id
-		redirect to "/user/#{user.slug}"
+		redirect to "/users/#{user.slug}"
 	end
 
-	get "/user/:slug" do 
+	get "/users/:slug" do 
 		if logged_in?
 			@user = current_user
 			erb :"/users/show_user"
@@ -29,7 +33,17 @@ class UserController < ApplicationController
 	end
 
 	get "/login" do 
-		erb :"users/login"
+		if logged_in?
+			user = current_user
+			redirect to "/users/#{user.slug}"
+		else	
+
+			if session[:valid?] == false
+				@valid = false
+				session[:valid?] = true
+			end
+			erb :"users/login"
+		end
 	end
 
 	post "/login" do 
@@ -39,7 +53,7 @@ class UserController < ApplicationController
 
 		if user && user.authenticate(params[:password])
 			session[:user_id] = user.id
-			redirect to "/user/#{user.slug}"
+			redirect to "/user/#{users.slug}"
 		else
 			session[:valid?] = false
 			redirect to "/login"
