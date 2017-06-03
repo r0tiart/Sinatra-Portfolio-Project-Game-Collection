@@ -1,1 +1,15 @@
 
+<h2 class="text-center"><%=@user.username %>'s Profile Page</h2>
+
+<br>
+<br>
+
+<ol>
+		
+	<% @user.games.each do |game| %>
+
+	<li><b><%=game.title.capitalize%></b> published by: <%=game.publisher%> </li>
+	
+	<%end%>
+
+</ol>

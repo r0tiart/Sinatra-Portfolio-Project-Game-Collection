@@ -7,8 +7,24 @@ class UserController < ApplicationController
 
 
 	post '/users' do 
-			
-		 user = User.new(params[:user])
-		 user.save
+		user = User.find_by(username: params[:user][:username])
+
+
+		if !user #if user does not exist - create new user else the user = the found user, username must be unique.
+			user = User.new(params[:user])
+			user.save
+		end
+
+		session[:user_id] = user.id
+		redirect to "/user/#{user.slug}"
+	end
+
+	get "/user/:slug" do 
+		if logged_in?
+			@user = current_user
+			erb :"/users/show_user"
+		else
+			redirect to "/"
+		end
 	end
 end
