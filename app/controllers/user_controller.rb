@@ -25,6 +25,7 @@ class UserController < ApplicationController
 
 	get "/users/:slug" do 
 		if logged_in?
+			@logged_in = logged_in?
 			@user = current_user
 			erb :"/users/show_user"
 		else
@@ -58,5 +59,11 @@ class UserController < ApplicationController
 			session[:valid?] = false
 			redirect to "/login"
 		end
+	end
+
+	get "/logout" do 
+		session.clear
+
+		redirect to "/"
 	end
 end
