@@ -1,4 +1,9 @@
 <h3>Let's register, Please fill out the form below:</h3>
+
+<% if @exist == true %>
+	
+	<b>Username already exists, please choose another username</b>
+<%end%>
 <form method="post" action="/users" >
 	
 User Name: <input type="text" name="user[username]">

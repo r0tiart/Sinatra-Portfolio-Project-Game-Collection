@@ -5,6 +5,12 @@ class UserController < ApplicationController
 			user = current_user
 			redirect to "/users/#{user.slug}"
 		else	
+
+			if session[:exist] == true
+				session[:exist] = false
+				@exist = true
+			end
+
 			erb :'/users/create_user'
 		end
 	end
@@ -17,10 +23,14 @@ class UserController < ApplicationController
 		if !user #if user does not exist - create new user else the user = the found user, username must be unique.
 			user = User.new(params[:user])
 			user.save
+			session[:user_id] = user.id
+			redirect to "/users/#{user.slug}"
+		else
+			session[:exist] = true
+			redirect to "/users/new"
 		end
 
-		session[:user_id] = user.id
-		redirect to "/users/#{user.slug}"
+		
 	end
 
 	get "/users/:slug" do 
@@ -54,7 +64,7 @@ class UserController < ApplicationController
 
 		if user && user.authenticate(params[:password])
 			session[:user_id] = user.id
-			redirect to "/user/#{users.slug}"
+			redirect to "/users/#{user.slug}"
 		else
 			session[:valid?] = false
 			redirect to "/login"

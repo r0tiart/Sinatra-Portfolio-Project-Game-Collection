@@ -1,5 +1,7 @@
 <h2 class="text-center">Please log in below:</h2>
-<b class="text-center">Invalid Username or Password, please try again</b>
+<%if @valid == false %>
+	<b class="text-center">Invalid Username or Password, please try again</b>
+<%end%>
 
 <form method="post" action="/login">
 	
