@@ -1,0 +1,14 @@
+<h1 class="text-center"><u><%=@game.title.capitalize%> Players</u></h1>
+
+	<ul class="row">
+			
+			<% @game.users.all.each do |user| %>
+				<p class="col-md-4"></p>
+				<li class="col-md-4">
+					<a href="/users/<%=user.slug%>"><%=user.username %></a>
+				</li>
+
+			<%end%>
+
+
+	</ul>

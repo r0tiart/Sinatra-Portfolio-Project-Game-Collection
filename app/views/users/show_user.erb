@@ -1,14 +1,20 @@
 
-<h2 class="text-center"><%=@user.username %>'s Profile Page</h2>
+<h2 class="text-center"><u><%=@user.username %>'s Profile Page</u></h2>
 
 <br>
 <br>
 
-<ol>
+<ol class="row">
 		
 	<% @user.games.each do |game| %>
-
-	<li><b><a href="/games/<%=game.slug%>"><%=game.title.capitalize%></a></b> published by: <%=game.publisher%> </li>
+	<div class="col-md-4">
+	
+	<h4>Games</h4>
+	<li>
+		
+		<b><a href="/games/<%=game.slug%>"><%=game.title.capitalize%></a></b> published by: <%=game.publisher%> 
+		</div>
+	</li>
 	
 	<%end%>
 
