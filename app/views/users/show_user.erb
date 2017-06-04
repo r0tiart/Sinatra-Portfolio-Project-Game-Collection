@@ -23,16 +23,16 @@
 	<% @user_profile.games.each do |game| %>
 	
 	<li>
-		<div class="col-md-4">
+		<div class="col-md-4 text-center">
 		<b><a href="/games/<%=game.slug%>"><%=game.title.split.collect{|word| word.capitalize}.join(" ")%></a></b> published by: <%=game.publisher%> 
 		</div>
 
-		<div class="col-md-4">
+		<div class="col-md-4 text-center">
 		number of characters
 		</div>
 
 
-		<div class="col-md-4"><%=game.genre.split.collect{|word| word.capitalize}.join(" ")%></div>
+		<div class="col-md-4 text-center"><%=game.genre.split.collect{|word| word.capitalize}.join(" ")%></div>
 	</li>
 	
 	<%end%>
