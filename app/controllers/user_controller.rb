@@ -1,5 +1,16 @@
 class UserController < ApplicationController
 
+	get '/users' do 
+		if logged_in?
+			@logged_in = logged_in?
+			@user = current_user
+			@users = User.all
+			erb :"/users/users"
+		else
+			redirect to "/"
+		end
+	end
+
 	get '/users/new' do 
 		if logged_in?
 			user = current_user
@@ -30,14 +41,17 @@ class UserController < ApplicationController
 			session[:exist] = true
 			redirect to "/users/new"
 		end
-
-		
 	end
 
 	get "/users/:slug" do 
+		@user_profile = User.find_by_slug(params[:slug])
+
 		if logged_in?
 			@logged_in = logged_in?
 			@user = current_user
+			@same_user = true if @user_profile == @user
+
+
 			erb :"/users/show_user"
 		else
 			redirect to "/"
@@ -54,7 +68,7 @@ class UserController < ApplicationController
 				@valid = false
 				session[:valid?] = true
 			end
-			erb :"users/login"
+			erb :"/users/login"
 		end
 	end
 

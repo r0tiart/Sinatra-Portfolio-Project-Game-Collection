@@ -1,13 +1,18 @@
 
-<div class="text-center"><h2><u><%=@user.username %>'s Profile Page</u></h2>
-<a class="" href="/games/new">Add New Game</a> </div>
+<div class="text-center"><h2><u><%=@user_profile.username %>'s Profile Page</u></h2>
+
+	<% if @same_user == true %>
+		<a class="" href="/games/new">Add New Game</a> 
+		
+	<%end%>	
+</div>
 
 <br>
 <br>
 
 <ol class="row">
 		
-	<% @user.games.each do |game| %>
+	<% @user_profile.games.each do |game| %>
 	<div class="col-md-4">
 
 	<h4>Games</h4>
