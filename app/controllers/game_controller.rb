@@ -16,7 +16,7 @@ class GameController < ApplicationController
 		if logged_in?
 			@logged_in = logged_in?
 			@user = current_user
-
+			@games = Game.all
 			erb :"/games/create_game"
 		else
 			redirect to "/"

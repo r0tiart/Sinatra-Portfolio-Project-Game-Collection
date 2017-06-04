@@ -11,14 +11,55 @@
 
 	<form method="post" action="/games">
 		
-		<label>Game Title:</label>
-		<input type="text" name="game[title]">
+		<label>Game Title: (choose from list of available games or create a new one):</label>
+
 		<br><br>
-		<label>Game Publisher: </label>
-		<input type="text" name="game[publisher]">
+
+		<b>Current Titles:</b>
+		<% @games.each do |game| %>
+
+			 &nbsp<input type="radio" name="game[:title]" value="<%=game.id%>"> &nbsp <%=game.title%></input>
+
+		<%end%>
+
 		<br><br>
+
+		<b>New Title: &nbsp</b> <input type="text" name="game[title]">
+
+		<br><br>
+
+		<label>Game Publisher: (choose from list of available games or create a new one):</label>
+
+		<br><br>
+
+		<b>Current Publishers:</b>
+		<% @games.each do |game| %>
+
+			 &nbsp<input type="radio" name="game[:publisher]" value="<%=game.publisher%>"> &nbsp <%=game.publisher%></input>
+
+		<%end%>
+
+
+		<br><br>
+
+		<b>New Publisher: &nbsp</b><input type="text" name="game[publisher]">
+
+		<br><br>
+
 		<label>Please Select or create a new genre: </label>
-		<input type="text" name="game[genre]">
+
+		<br><br>
+
+		<b>Current Genres:</b>
+		<% @games.each do |game| %>
+
+			 &nbsp<input type="radio" name="game[:genre]" value="<%=game.genre%>"> &nbsp <%=game.genre%></input>
+
+		<%end%>
+
+		<br><br>
+
+		<b>New Genre: &nbsp</b><input type="text" name="game[genre]">
 
 		<br><br>
 		<input type="submit" name="submit" value="Create Game">
