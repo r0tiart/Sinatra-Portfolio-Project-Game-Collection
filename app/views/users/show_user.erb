@@ -1,5 +1,6 @@
 
-<h2 class="text-center"><u><%=@user.username %>'s Profile Page</u></h2>
+<div class="text-center"><h2><u><%=@user.username %>'s Profile Page</u></h2>
+<a class="" href="/games/new">Add New Game</a> </div>
 
 <br>
 <br>
@@ -8,15 +9,24 @@
 		
 	<% @user.games.each do |game| %>
 	<div class="col-md-4">
-	
+
 	<h4>Games</h4>
 	<li>
 		
 		<b><a href="/games/<%=game.slug%>"><%=game.title.capitalize%></a></b> published by: <%=game.publisher%> 
-		</div>
 	</li>
+	</div>
+
+	<div class="col-md-4">
+	<h4>Characters</h4>
+	</div>
+
 	
+	<div class="col-md-4"></div>
+
 	<%end%>
 
 </ol>
+
+<br><br>
 

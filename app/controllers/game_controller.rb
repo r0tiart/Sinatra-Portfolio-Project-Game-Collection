@@ -10,6 +10,19 @@ class GameController < ApplicationController
 		erb :"/games/games"
 	end
 
+
+
+	get '/games/new' do 
+		if logged_in?
+			@logged_in = logged_in?
+			@user = current_user
+			erb :"/games/create_game"
+		else
+			redirect to "/"
+		end
+	end
+
+
 	get '/games/:slug' do 
 	
 		if logged_in?
@@ -20,5 +33,5 @@ class GameController < ApplicationController
 		else
 			redirect to "/"
 		end
-	end
+	end	
 end
