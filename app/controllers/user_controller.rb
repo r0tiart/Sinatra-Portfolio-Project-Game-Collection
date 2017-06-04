@@ -17,11 +17,12 @@ class UserController < ApplicationController
 
 
 	post '/users' do 
-		user = User.find_by(username: params[:user][:username])
+		user = User.find_by(username: params[:user][:username].downcase)
 
 
 		if !user #if user does not exist - create new user else the user = the found user, username must be unique.
 			user = User.new(params[:user])
+			user.username.downcase
 			user.save
 			session[:user_id] = user.id
 			redirect to "/users/#{user.slug}"

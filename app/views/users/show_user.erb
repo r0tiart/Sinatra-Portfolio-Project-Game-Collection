@@ -13,7 +13,7 @@
 	<h4>Games</h4>
 	<li>
 		
-		<b><a href="/games/<%=game.slug%>"><%=game.title.capitalize%></a></b> published by: <%=game.publisher%> 
+		<b><a href="/games/<%=game.slug%>"><%=game.title.split.collect{|word| word.capitalize}.join(" ")%></a></b> published by: <%=game.publisher%> 
 	</li>
 	</div>
 

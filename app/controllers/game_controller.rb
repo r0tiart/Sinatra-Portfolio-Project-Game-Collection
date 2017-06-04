@@ -34,4 +34,8 @@ class GameController < ApplicationController
 			redirect to "/"
 		end
 	end	
+
+	post '/games' do 
+		binding.pry
+	end
 end
