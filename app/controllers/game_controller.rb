@@ -37,8 +37,9 @@ class GameController < ApplicationController
 	end	
 
 	post '/games' do 
-		game = Game.find_by(title: params[:game][:title].downcase)
 
+		game = Game.find_by(title: params[:game][:title].downcase)
+		#if game is found - the publisher/genre can't be changed
 
 		if !game #if game does not exist - create new game else the game = the found game, game must be unique.
 			game = Game.new(params[:game])
