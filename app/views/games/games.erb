@@ -9,17 +9,20 @@
 
 		<% if @logged_in %>	
 			<li>
-				<div class="col-md-4">Title: <a href="/games/<%=game.slug%>"><%=game.title.split.collect{|word| word.capitalize}.join(" ")%></a></div>	
-				<div class="col-md-4">Publisher: <%=game.publisher.split.collect{|word| word.capitalize}.join(" ")%> </div>
-				<div class="col-md-4">Number of Players: <%=game.users.all.count%></div>
+				<div class="col-md-3">Title: <a href="/games/<%=game.slug%>"><%=game.title.split.collect{|word| word.capitalize}.join(" ")%></a></div>	
+				<div class="col-md-3">Publisher: <%=game.publisher.split.collect{|word| word.capitalize}.join(" ")%> </div>
+				<div class="col-md-3">Genre: <%=game.genre.split.collect{|word| word.capitalize}.join(" ")%> </div>
+				<div class="col-md-3">Number of Players: <%=game.users.all.count%></div>
 			</li>
 
 		<% else %>
 
 			<li>
-				<div class="col-md-4">Title: <%=game.title.split.collect{|word| word.capitalize}.join(" ")%></div>	
-				<div class="col-md-4">Publisher: <%=game.publisher.split.collect{|word| word.capitalize}.join(" ")%> </div>
-				<div class="col-md-4">Number of Players: <%=game.users.all.count%></div>
+				<div class="col-md-3">Title: <%=game.title.split.collect{|word| word.capitalize}.join(" ")%></div>	
+				<div class="col-md-3">Publisher: <%=game.publisher.split.collect{|word| word.capitalize}.join(" ")%> </div>
+				<div class="col-md-3">Genre: <%=game.genre.split.collect{|word| word.capitalize}.join(" ")%> </div>
+				<div class="col-md-3">Number of Players: <%=game.users.all.count%></div>
+
 			</li>
 
 		<%end%>
