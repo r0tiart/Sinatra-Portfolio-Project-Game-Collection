@@ -1,4 +1,7 @@
-<h1 class="text-center"><u><%=@game.title.split.collect{|word| word.capitalize}.join(" ")%> Players</u></h1>
+<div class="text-center"><h1><u><%=@game.title.split.collect{|word| word.capitalize}.join(" ")%> Players</u></h1>
+
+<b>Published By: <%=@game.publisher.split.collect{|word| word.capitalize}.join(" ") %></b>
+</div>
 
 	<ul class="row">
 			

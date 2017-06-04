@@ -1,5 +1,10 @@
 <div class="text-center">
 	<h3><u>New Game Form</u></h3>
+
+	<% if @exist == true %>
+	
+		<b>Game already exists, please create another game</b>
+	<%end%>
 </div>
 
 <div class="text-md-left" > 
@@ -12,7 +17,10 @@
 		<label>Game Publisher: </label>
 		<input type="text" name="game[publisher]">
 		<br><br>
+		<label>Please Select or create a new genre: </label>
+		<input type="text" name="game[genre]">
 
+		<br><br>
 		<input type="submit" name="submit" value="Create Game">
 
 	</form>

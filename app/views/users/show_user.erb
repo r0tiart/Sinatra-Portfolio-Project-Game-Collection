@@ -7,28 +7,34 @@
 	<%end%>	
 </div>
 
+<div class="col-headers row">
+	<br>
+	<h4 class="col-md-4 text-center">Games</h4>
+	<h4 class="col-md-4 text-center">Characters</h4>
+	<h4 class="col-md-4 text-center">Genre</h4>
+</div>
+
+
 <br>
 <br>
 
 <ol class="row">
 		
 	<% @user_profile.games.each do |game| %>
-	<div class="col-md-4">
-
-	<h4>Games</h4>
-	<li>
-		
-		<b><a href="/games/<%=game.slug%>"><%=game.title.split.collect{|word| word.capitalize}.join(" ")%></a></b> published by: <%=game.publisher%> 
-	</li>
-	</div>
-
-	<div class="col-md-4">
-	<h4>Characters</h4>
-	</div>
-
 	
-	<div class="col-md-4"></div>
+	<li>
+		<div class="col-md-4">
+		<b><a href="/games/<%=game.slug%>"><%=game.title.split.collect{|word| word.capitalize}.join(" ")%></a></b> published by: <%=game.publisher%> 
+		</div>
 
+		<div class="col-md-4">
+		number of characters
+		</div>
+
+
+		<div class="col-md-4"><%=game.publisher.split.collect{|word| word.capitalize}.join(" ")%></div>
+	</li>
+	
 	<%end%>
 
 </ol>
