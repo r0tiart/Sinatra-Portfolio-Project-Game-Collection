@@ -16,12 +16,8 @@
 	<%@characters.each do |character|%>
 
 		<li>
-			<% if @user_profile.id == @user.id%>
 				<a href="/users/<%=@user_profile.slug%>/<%=@game.slug%>/characters/<%=character.slug%>"><%=character.name%></a>
-			<%else%>
-			<div class="text-left"><%=character.name%></div>
 
-			<%end%>
 			<!-- <div class="col-md-4 text-left"><%=character.klass%></div>
 			<div class="col-md-4 text-left"><%=character.level%></div> -->
 		</li>

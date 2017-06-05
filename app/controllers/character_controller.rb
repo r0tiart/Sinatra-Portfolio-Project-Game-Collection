@@ -28,4 +28,19 @@ class CharacterController < ApplicationController
 			redirect to "/"	
 		end
 	end
+
+	get "/users/:user_slug/:game_slug/characters/:character_slug/edit" do 
+		@user_profile = User.find_by_slug(params[:user_slug])
+		@game = Game.find_by_slug(params[:game_slug])
+		@user = current_user
+		@character = Character.find_by_slug(params[:character_slug])	
+
+		if logged_in? && @user.id == @user_profile.id
+			@logged_in = logged_in?
+ 			erb :"/characters/edit_character"
+		else
+
+			redirect to "/"
+		end
+	end
 end
