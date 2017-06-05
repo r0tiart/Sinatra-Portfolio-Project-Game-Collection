@@ -21,6 +21,12 @@ class CharacterController < ApplicationController
 
 		if logged_in? && @user.id == @user_profile.id
 			@logged_in = logged_in?
+
+			if session[:missing] == true 
+				session[:missing] = false 
+				@missing = true
+			end
+
  			erb :"/characters/create_character"
 		else
 			redirect to "/"
@@ -35,8 +41,13 @@ class CharacterController < ApplicationController
 		user.characters << character
 		game.characters << character
 
-		user.save
-		redirect to "/users/#{user.slug}/#{game.slug}/characters"
+		if user.save
+			redirect to "/users/#{user.slug}/#{game.slug}/characters"
+		else
+			session[:missing] = true
+			redirect to "/users/#{user.slug}/#{game.slug}/characters/new"
+
+		end
 	end
 
 

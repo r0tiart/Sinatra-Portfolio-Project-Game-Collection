@@ -1,5 +1,9 @@
 <div class="text-center">
 	<h3><u>New Character Form for <%=@game.title.split.collect{|word| word.capitalize}.join(" ")%></u></h3>
+
+	<% if @missing == true %>
+		<b>Can't leave any field blank, please try again</b>
+	<%end%>
 </div>
 
 <form method="post" action="/users/<%=@user_profile.slug%>/<%=@game.slug%>/characters">
