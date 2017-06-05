@@ -14,6 +14,19 @@ class CharacterController < ApplicationController
 		end
 	end
 
+	get "/users/:user_slug/:game_slug/characters/new" do
+		@user_profile = User.find_by_slug(params[:user_slug])
+		@game = Game.find_by_slug(params[:game_slug])
+		@user = current_user
+
+		if logged_in? && @user.id == @user_profile.id
+			@logged_in = logged_in?
+ 			erb :"/characters/create_character"
+		else
+			redirect to "/"
+		end
+	end
+
 
 	get  "/users/:user_slug/:game_slug/characters/:character_slug" do
 		if logged_in?
