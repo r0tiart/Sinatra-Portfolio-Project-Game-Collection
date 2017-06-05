@@ -27,6 +27,18 @@ class CharacterController < ApplicationController
 		end
 	end
 
+	post "/users/:user_slug/:game_slug/characters" do 
+		params[:character][:level] = params[:character][:level].to_i
+		user = User.find_by_slug(params[:user_slug])
+		game = Game.find_by_slug(params[:game_slug])
+		character = Character.new(params[:character])
+		user.characters << character
+		game.characters << character
+
+		user.save
+		redirect to "/users/#{user.slug}/#{game.slug}/characters"
+	end
+
 
 	get  "/users/:user_slug/:game_slug/characters/:character_slug" do
 		if logged_in?
@@ -59,7 +71,7 @@ class CharacterController < ApplicationController
 
 	post "/users/:user_slug/:game_slug/characters/:character_slug" do
 		@character = Character.find_by_slug(params[:character_slug])
-		@character.name = params[:character][:name].downcase
+		@character.name = params[:character][:name]
 		@character.level = params[:character][:level]	
 		@character.save
 

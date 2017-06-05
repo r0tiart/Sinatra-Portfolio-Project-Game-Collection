@@ -1,1 +1,16 @@
-Create Character page
+<div class="text-center">
+	<h3><u>New Character Form for <%=@game.title.split.collect{|word| word.capitalize}.join(" ")%></u></h3>
+</div>
+
+<form method="post" action="/users/<%=@user_profile.slug%>/<%=@game.slug%>/characters">
+		
+		Character Name: <input type="text" name="character[name]">
+		<br><br>
+		Character Class: <input type="text" name="character[klass]">
+		<br><br>
+		Character Level: <input type="text" name="character[level]">
+
+		<br><br>
+
+		<input type="submit" name="submit" value="Create Charcter">
+</form>
