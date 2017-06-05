@@ -82,9 +82,22 @@ class CharacterController < ApplicationController
 
 	post "/users/:user_slug/:game_slug/characters/:character_slug" do
 		@character = Character.find_by_slug(params[:character_slug])
-		@character.name = params[:character][:name]
-		@character.level = params[:character][:level]	
-		@character.save
+
+		if params[:character][:name] == "" || params[:character][:level] == ""
+
+			if params[:character][:name] == "" && params[:character][:level] != ""
+				@character.level = params[:character][:level]	
+				@character.save
+
+			elsif params[:character][:name] != "" && params[:character][:level] == ""
+				@character.name = params[:character][:name]
+				@character.save
+			end
+		else	
+			@character.name = params[:character][:name]
+			@character.level = params[:character][:level]	
+			@character.save
+		end
 
 		redirect to "/users/#{params[:user_slug]}/#{params[:game_slug]}/characters/#{@character.slug}"
 	end
