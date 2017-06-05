@@ -1,1 +1,29 @@
-test test
+<h1 class="text-center"><b><%=@user.username%></b></h1>
+<h3 class="text-center"><u><%=@game.title.split.collect{|word| word.capitalize}.join(" ")%> Characters</u></h3>
+
+<div class="row	">
+	
+	<h5 class="col-md-4 text-left">Name</h5>
+	<h5 class="col-md-4 text-left">Class</h5>
+	<h5 class="col-md-4 text-left">Level</h5>
+
+
+
+</div>
+
+<ol class="row">
+	
+	<%@characters.each do |character|%>
+
+		<li>
+			<div class="col-md-4 text-left"><%=character.name%></div>
+			<div class="col-md-4 text-left"><%=character.klass%></div>
+			<div class="col-md-4 text-left"><%=character.level%></div>
+		</li>
+
+
+	<%end%>
+
+
+</ol>
+
