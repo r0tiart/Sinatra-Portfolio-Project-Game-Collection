@@ -1,11 +1,12 @@
 class CharacterController < ApplicationController
 
-	get "/users/:slug/characters" do
+	get "/users/:user_slug/:game_slug/characters" do
  		if logged_in?
  			@logged_in = logged_in?
-			@game = Game.find_by_slug(params[:slug])
+ 			@user_profile = User.find_by_slug(params[:user_slug])
+			@game = Game.find_by_slug(params[:game_slug])
 			@user = current_user
-			@characters = @user.characters.select { |character| character.game_id == @game.id}
+			@characters = @user_profile.characters.select { |character| character.game_id == @game.id}
 
 			erb :"/characters/characters"
 		else

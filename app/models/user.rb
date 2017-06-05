@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :user_games
 	has_many :games, through: :user_games
-	has_many :characters, through: :games
+	has_many :characters
 
 
 	has_secure_password

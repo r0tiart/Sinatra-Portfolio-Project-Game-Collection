@@ -45,7 +45,6 @@ class UserController < ApplicationController
 
 	get "/users/:slug" do 
 		@user_profile = User.find_by_slug(params[:slug])
-
 		if logged_in?
 			@logged_in = logged_in?
 			@user = current_user
