@@ -6,14 +6,12 @@
 <br>
 </div>
 
-	<ul class="row">
+	<ul >
 			
 			<% @game.users.all.each do |user| %>
-				<p class="col-md-4"></p>
-				<li class="col-md-4">
+				<li class="text-left">
 					<a href="/users/<%=user.slug%>"><%=user.username%></a>
 				</li>
-
 			<%end%>
 
 

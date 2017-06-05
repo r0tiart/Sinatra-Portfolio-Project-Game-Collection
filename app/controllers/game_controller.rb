@@ -56,4 +56,16 @@ class GameController < ApplicationController
 
 		redirect to "/games/#{game.slug}"
 	end
+
+	get '/games/:slug/delete' do 
+
+		if logged_in?
+			@game = Game.find_by_slug(params[:slug])
+			@logged_in = logged_in?
+			@user = current_user
+			erb :"/games/delete_game"
+		else
+			redirect to "/"
+		end
+	end
 end

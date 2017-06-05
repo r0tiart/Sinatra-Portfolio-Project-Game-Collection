@@ -19,24 +19,43 @@
 <br>
 
 <ol class="row">
-		
-	<% @user_profile.games.each do |game| %>
 	
+	<% @user_profile.games.each do |game| %>
+
+	<% if @same_user == true %>
+
+	<form method="get" action="/games/<%=game.slug%>/delete">	
+
+	<%end%>	
+
+	<br>
 	<li>
 		<div class="col-md-4 text-center">
 		<b><a href="/games/<%=game.slug%>"><%=game.title.split.collect{|word| word.capitalize}.join(" ")%></a></b> published by: <%=game.publisher%> 
+
+		<% if @same_user == true %>
+
+		<input type="submit" name="submit" value="Delete">
+
+		<%end%>	
+
 		</div>
 
 		<div class="col-md-4 text-center">
-		number of characters
+		<a href="/characters"><%=game.characters.count%></a>
 		</div>
 
 
 		<div class="col-md-4 text-center"><%=game.genre.split.collect{|word| word.capitalize}.join(" ")%></div>
 	</li>
-	
-	<%end%>
 
+	<% if @same_user == true %>
+
+	</form>
+
+	<%end%>	
+
+	<%end%>
 </ol>
 
 <br><br>

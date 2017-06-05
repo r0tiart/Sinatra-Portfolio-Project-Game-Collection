@@ -91,4 +91,12 @@ class UserController < ApplicationController
 
 		redirect to "/"
 	end
+
+	post "/delete" do 
+		user = User.find(session[:user_id])
+		game = Game.find(params[:game_id])
+		user.games.delete(game)
+		user.save
+		redirect to "/users/#{user.slug}"
+	end
 end

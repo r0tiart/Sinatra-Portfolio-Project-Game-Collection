@@ -1,0 +1,17 @@
+<u><h3 class="text-center"><%=@game.title.split.collect{|word| word.capitalize}.join(" ")%></h3></u>
+
+<b>Are you sure you want to delete game?</b>
+
+<form action="/delete" method="post">
+
+<input type="hidden" name="game_id" value="<%=@game.id%>">
+<input type="submit" name="submit" value="Confirm Delete">
+
+</form>
+
+<br>
+<form action="/users/<%=@user.slug%>" method="get">
+	
+
+<input type="submit" name="submit" value="Don't Delete">
+</form>
