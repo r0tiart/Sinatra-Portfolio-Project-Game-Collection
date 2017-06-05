@@ -43,4 +43,13 @@ class CharacterController < ApplicationController
 			redirect to "/"
 		end
 	end
+
+	post "/users/:user_slug/:game_slug/characters/:character_slug" do
+		@character = Character.find_by_slug(params[:character_slug])
+		@character.name = params[:character][:name].downcase
+		@character.level = params[:character][:level]	
+		@character.save
+
+		redirect to "/users/#{params[:user_slug]}/#{params[:game_slug]}/characters/#{@character.slug}"
+	end
 end

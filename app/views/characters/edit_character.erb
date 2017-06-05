@@ -1,1 +1,20 @@
-Edit character page
+<h1 class=text-center><%=@character.name %></h1>
+<h4 class=text-center><u><%=@game.title.split.collect{|word| word.capitalize}.join(" ")%></u></h4>
+
+<br><br>
+
+<h5>Edit Character</h5>
+
+<form method="post" action="/users/<%=@user_profile.slug%>/<%=@game.slug%>/characters/<%=@character.slug%>">
+	<br>
+	<br>
+	Character Name: <input type="text" name="character[name]">
+
+	<br><br>
+
+	Character Level <input type="text" name="character[level]">
+
+	<br><br>
+
+	<input type="submit" name="submit" value="Submit">
+</form>
