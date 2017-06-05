@@ -1,0 +1,21 @@
+<h1 class=text-center><%=@character.name %></h1>
+<h4 class=text-center><u><%=@game.title.split.collect{|word| word.capitalize}.join(" ")%></u></h4>
+
+<br><br>
+
+
+<b class="text-left">Class: </b> <%=@character.klass.split.collect{|word| word.capitalize}.join(" ")%>
+
+<br><br>
+<b class="text-left">Level: </b> <%=@character.level%>
+
+
+<% if @user.id == @user_profile.id %>
+	<br><br>
+	<a href="/users/<%=@user_profile.slug%>/<%=@game.slug%>/characters/<%=@character.slug%>/edit">Edit</a>
+
+
+<%end%>
+
+
+
