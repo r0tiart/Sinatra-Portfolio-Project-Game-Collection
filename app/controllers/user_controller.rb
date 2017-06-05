@@ -20,6 +20,9 @@ class UserController < ApplicationController
 			if session[:exist] == true
 				session[:exist] = false
 				@exist = true
+			elsif session[:missing] == true 
+				session[:missing] = false 
+				@missing = true
 			end
 
 			erb :'/users/create_user'
@@ -34,9 +37,13 @@ class UserController < ApplicationController
 		if !user #if user does not exist - create new user else the user = the found user, username must be unique.
 			user = User.new(params[:user])
 			user.username = user.username.downcase
-			user.save
-			session[:user_id] = user.id
-			redirect to "/users/#{user.slug}"
+			if user.save
+				session[:user_id] = user.id
+				redirect to "/users/#{user.slug}"
+			else
+				session[:missing] = true
+				redirect to "/users/new"
+			end
 		else
 			session[:exist] = true
 			redirect to "/users/new"

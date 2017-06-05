@@ -17,6 +17,12 @@ class GameController < ApplicationController
 			@logged_in = logged_in?
 			@user = current_user
 			@games = Game.all
+
+			if session[:missing] == true 
+				session[:missing] = false 
+				@missing = true
+			end
+
 			erb :"/games/create_game"
 		else
 			redirect to "/"
@@ -46,10 +52,17 @@ class GameController < ApplicationController
 			game.title = game.title.downcase
 			game.publisher = game.publisher.downcase
 
-			current_user.games << game
-			current_user.save
+			
+			if game.save #makes sure nothing is blank validation that is saves
+				current_user.games << game
+				current_user.save
+				redirect to "/games/#{game.slug}"
+			else
+				session[:missing] = true
+				redirect to "/games/new"
+			end
 
-		else
+		else #else if game exists
 			current_user.games << game
 			current_user.save
 		end

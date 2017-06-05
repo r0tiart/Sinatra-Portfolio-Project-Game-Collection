@@ -3,6 +3,9 @@
 <% if @exist == true %>
 	
 	<b>Username already exists, please choose another username</b>
+
+<% elsif @missing == true %>
+	<b>Can't leave any field blank, please try again</b>
 <%end%>
 <form method="post" action="/users" >
 	
